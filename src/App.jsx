@@ -1,34 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import Dropdown from "./components/Dropdown"
+import { useState, useRef, useEffect } from "react";
+
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [clicked, setClicked] = useState(true);
+  const [x, setX] = useState("");
+  const [y, setY] = useState("");
+  const ref = useRef();
+
+  function handleClick(e) {
+    setClicked(true);
+    console.log(e);
+    setX(e.pageX);
+    setY(e.pageY);
+
+  }
+
+  useEffect(() => {
+    function handler(e) {
+      if (ref.current && !ref.current.contains(e.target)) {
+          setClicked(false);
+      }
+
+    }
+    document.addEventListener("mousedown", handler)
+    return () => {
+      document.removeEventListener("mousedown", handler);
+    }
+  }, [clicked])
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <div  style={{border: "2px solid", width: "50%"}} ref={ref} onClick={handleClick}>
+        <img  src="img.jpg"/>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+      <div style={{position: "absolute", top: `${y - 75}px`, left: `${x - 65}px`}}>
+        {clicked && <Dropdown/>}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    </div>
   )
 }
 
