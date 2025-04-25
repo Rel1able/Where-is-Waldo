@@ -1,8 +1,11 @@
 .image{
-
+    margin: auto;
     border: 2px solid;
 }
 
 .container{
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
