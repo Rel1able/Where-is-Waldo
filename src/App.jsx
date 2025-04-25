@@ -1,6 +1,6 @@
 import Dropdown from "./components/Dropdown"
 import { useState, useRef, useEffect } from "react";
-
+import styles from "./styles/app.module.css";
 
 function App() {
   const [clicked, setClicked] = useState(true);
@@ -30,13 +30,11 @@ function App() {
   }, [clicked])
 
   return (
-    <div>
-      <div  style={{border: "2px solid", width: "50%"}} ref={ref} onClick={handleClick}>
+    <div className={styles.container}>
+      <div className={styles.image} ref={ref} onClick={handleClick}>
         <img  src="img.jpg"/>
       </div>
-      <div style={{position: "absolute", top: `${y - 75}px`, left: `${x - 65}px`}}>
-        {clicked && <Dropdown/>}
-      </div>
+      {clicked && <Dropdown top={y} left={x} />}
     </div>
   )
 }

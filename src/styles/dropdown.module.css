@@ -1,18 +1,21 @@
 .dropdown{
-    border: 2px solid;
     display: flex;
-    position: absolute;
+    position: absolute; 
+
 
 }
 
 .targetingBox{
-    width: 150px;
-    height: 150px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
     border: 2px solid black;
     color: white;
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-shrink: 0;
+
 }
 
 .charactersList{
@@ -31,4 +34,5 @@
     background-color: red;
     width: 10px;
     height: 10px;
+    
 }
