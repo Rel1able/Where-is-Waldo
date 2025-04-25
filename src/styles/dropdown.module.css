@@ -17,6 +17,7 @@
     align-items: center;
     flex-shrink: 0;
     position: relative;
+    opacity: 1;
 
 }
 
@@ -29,7 +30,10 @@
     position: relative;
     bottom: 5rem;
     padding: 0;
-    border: 2px solid;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: black;
 }
 
 .pointer{
@@ -37,5 +41,6 @@
     background-color: red;
     width: 10px;
     height: 10px;
+
     
 }
