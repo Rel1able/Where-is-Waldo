@@ -3,11 +3,15 @@ import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
+import Game from "./components/Game.jsx"
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App/>,
+    element: <App />,
+    children: [
+      {path: "/game", element: <Game />}
+    ]
   }
 ])
 

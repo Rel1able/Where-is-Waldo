@@ -2,7 +2,6 @@ import styles from "../styles/dropdown.module.css";
 import { useRef, useEffect, useState } from "react";
 
 export default function Dropdown({ top, left }) {
-    const pointerOffset = 10 / 2;
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
     useEffect(() => {
@@ -16,7 +15,7 @@ export default function Dropdown({ top, left }) {
     const ref = useRef();
     console.log(top, left)
     return (
-        <div style={{top: `${top - height / 2 - pointerOffset}px`, left: `${left - (width / 2) - pointerOffset}px`}} className={styles.dropdown}>
+        <div style={{top: `${top - height / 2}px`, left: `${left - (width / 2)}px`}} className={styles.dropdown}>
             <div ref={ref} className={styles.targetingBox}>
                 <div className={styles.pointer}></div>
             </div>
