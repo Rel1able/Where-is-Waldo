@@ -1,6 +1,8 @@
 .dropdown{
     display: flex;
     position: absolute; 
+    width: 75px;
+    height: 75px;
 
 
 }
@@ -8,7 +10,6 @@
 .targetingBox{
     width: 75px;
     height: 75px;
-    border-radius: 50%;
     border: 2px solid black;
     color: white;
     display: flex;
@@ -25,8 +26,9 @@
     font-size: 2rem;
     font-weight: bold;
     position: relative;
-    bottom: 2rem;
-    height: 10%;
+    bottom: 5rem;
+    padding: 0;
+    border: 2px solid;
 }
 
 .pointer{

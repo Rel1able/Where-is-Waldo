@@ -30,8 +30,8 @@ function App() {
   }, [clicked])
 
   return (
-    <div className={styles.container}>
-      <div className={styles.image} ref={ref} onClick={handleClick}>
+    <div ref={ref} className={styles.container}>
+      <div className={styles.image} onClick={handleClick}>
         <img  src="img.jpg"/>
       </div>
       {clicked && <Dropdown top={y} left={x} />}
