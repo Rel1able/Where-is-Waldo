@@ -2,6 +2,7 @@ import Dropdown from "./Dropdown"
 import { useState, useRef, useEffect } from "react";
 import styles from "../styles/game.module.css"
 import Header from "./Header";
+import FindBar from "./FindBar";
 
 
 export default function Game() {
@@ -34,6 +35,7 @@ export default function Game() {
     return (
         <>
             <Header />
+            <FindBar/>
             <div ref={ref} className={styles.container}>
                 <div className={styles.image} onClick={handleClick}>
                     <img  src="img.jpg"/>

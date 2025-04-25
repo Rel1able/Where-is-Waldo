@@ -1,5 +1,9 @@
+import styles from "../styles/header.module.css";
+
 export default function Header() {
     return (
-        <h1>Hello world</h1>
+        <header className={styles.header}>
+            Where's Waldo
+        </header>
     )
 }

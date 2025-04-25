@@ -4,14 +4,17 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import './index.css'
 import App from './App.jsx'
 import Game from "./components/Game.jsx"
+import ErrorElement from './components/ErrorElement.jsx'
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
-    children: [
-      {path: "/game", element: <Game />}
-    ]
+    errorElement: <ErrorElement/>
+  },
+  {
+    path: "/game",
+    element: <Game/>
   }
 ])
 

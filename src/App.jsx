@@ -1,10 +1,10 @@
-import { Outlet } from "react-router-dom"
 import Header from "./components/Header"
+import StartScreen from "./components/StartScreen"
 function App() {
   return (
     <>
-
-      <Outlet/>
+      <Header />
+      <StartScreen/>
     </>
 
   )

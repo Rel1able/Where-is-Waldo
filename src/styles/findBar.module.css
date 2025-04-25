@@ -1,0 +1,11 @@
+.characters{
+    display: flex;
+    gap: 1rem;
+}
+
+.navbar{
+    position: sticky;
+    top: 0;
+    background-color: black;
+    color: white;
+}
