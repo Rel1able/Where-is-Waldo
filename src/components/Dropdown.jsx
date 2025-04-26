@@ -13,7 +13,7 @@ export default function Dropdown({ top, left }) {
 
 
     const ref = useRef();
-    console.log(top, left)
+
     return (
         <div style={{top: `${top - height / 2}px`, left: `${left - (width / 2)}px`}} className={styles.dropdown}>
             <div ref={ref} className={styles.targetingBox}>
