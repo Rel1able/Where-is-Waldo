@@ -1,7 +1,7 @@
 import styles from "../styles/dropdown.module.css";
 import { useRef, useEffect, useState } from "react";
 
-export default function Dropdown({ top, left }) {
+export default function Dropdown({ top, left ,}) {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
     useEffect(() => {

@@ -11,6 +11,8 @@ export default function Game() {
     const [y, setY] = useState("");
     const [res, setRes] = useState("");
     const ref = useRef();
+    const dropdownRef = useRef();
+
 
     async function handleClick(e) {
         setClicked(true);
@@ -29,9 +31,11 @@ export default function Game() {
 
     useEffect(() => {
         function handler(e) {
-            if (ref.current && !ref.current.contains(e.target)) {
+            if (ref.current && !ref.current.contains(e.target)
+            && !dropdownRef.current && !dropdownRef.current.contains(e.target)) {
                 setClicked(false);
             }
+
 
         }
         document.addEventListener("mousedown", handler)
@@ -44,13 +48,14 @@ export default function Game() {
         <>
             <Header />
             <FindBar />
-            {res && <h1>{res}</h1>}
+            
             <div ref={ref} className={styles.container}>
-                <div className={styles.image} onClick={handleClick}>
+                <div   className={styles.image} onClick={handleClick}>
                     <img  src="img.jpg"/>
                 </div>
-                {clicked && <Dropdown top={y} left={x} />}
+                {clicked  && <Dropdown ref={dropdownRef} top={y} left={x} />}
             </div>
+            {res && <h1>{res}</h1>}
         </>
 
     )
