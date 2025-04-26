@@ -12,6 +12,8 @@ export default function Game() {
     const [res, setRes] = useState("");
     const ref = useRef();
     const dropdownRef = useRef();
+    const imageRef = useRef();
+
 
 
     async function handleClick(e) {
@@ -21,10 +23,27 @@ export default function Game() {
         setY(e.pageY);
         console.log("X IS ", e.pageX);
         console.log("Y IS ", e.pageY);
-        const req = await fetch(`https://where-is-waldo-api.onrender.com/misterio?x=${e.pageX}&y=${e.pageY}`);
+        const rect = imageRef.current.getBoundingClientRect();
+
+        const left = e.pageX - rect.left;
+        const top = e.pageY - (rect.top + window.scrollY);
+        const width = rect.width;
+        const height = rect.height; 
+
+        const percentX = (left / width) * 100;
+        const percentY = (top / height) * 100;
+
+        console.log("PERCENT XXX", percentX);
+        console.log("PERCENT YYY", percentY);
+
+        console.log("LEFT", left, "TOP", top)
+        console.log("RECT", rect);
+
+        const req = await fetch(`https://where-is-waldo-api.onrender.com/misterio?x=${percentX}&y=${percentY}`);
         const res = await req.json();
         setRes(res);
         console.log(res);
+
         
 
     }
@@ -50,8 +69,8 @@ export default function Game() {
             <FindBar />
             
             <div  className={styles.container}>
-                <div ref={ref}  className={styles.image} onClick={handleClick}>
-                    <img  src="img.jpg"/>
+                <div ref={ref}  className={styles.imageContainer} onClick={handleClick}>
+                    <img ref={imageRef} className={styles.image}  src="img.jpg"/>
                 </div>
                 {clicked  && <Dropdown ref={dropdownRef} top={y} left={x} />}
             </div>
