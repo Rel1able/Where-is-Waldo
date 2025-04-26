@@ -32,7 +32,7 @@ export default function Game() {
     useEffect(() => {
         function handler(e) {
             if (ref.current && !ref.current.contains(e.target)
-            && !dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+            && dropdownRef.current && !dropdownRef.current.contains(e.target)) {
                 setClicked(false);
             }
 
@@ -49,8 +49,8 @@ export default function Game() {
             <Header />
             <FindBar />
             
-            <div ref={ref} className={styles.container}>
-                <div   className={styles.image} onClick={handleClick}>
+            <div  className={styles.container}>
+                <div ref={ref}  className={styles.image} onClick={handleClick}>
                     <img  src="img.jpg"/>
                 </div>
                 {clicked  && <Dropdown ref={dropdownRef} top={y} left={x} />}
