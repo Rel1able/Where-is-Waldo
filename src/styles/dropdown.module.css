@@ -3,8 +3,7 @@
     position: absolute; 
     width: 75px;
     height: 75px;
-
-
+    flex-direction: column;
 }
 
 .targetingBox{
@@ -23,13 +22,9 @@
 
 .charactersList{
     display: flex;
-    gap: 2rem;
-    padding: 2rem;
-    font-size: 2rem;
+    gap: 1rem;
     font-weight: bold;
-    position: relative;
-    bottom: 5rem;
-    padding: 0;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     color: white;

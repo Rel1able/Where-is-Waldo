@@ -21,15 +21,18 @@ export default function Game() {
         console.log(e);
         setX(e.pageX);
         setY(e.pageY);
+        console.log(e.pageX);
+        console.log(e.pageY);
         const rect = imageRef.current.getBoundingClientRect();
 
-        const left = e.pageX - (rect.left + window.scrollX);
-        const top = e.pageY - (rect.top + window.scrollY);
+        const clickX = e.pageX - (rect.left + window.scrollX);
+        const clickY = e.pageY - (rect.top + window.scrollY);
         const width = rect.width;
         const height = rect.height; 
 
-        const percentX = (left / width) * 100;
-        const percentY = (top / height) * 100;
+        const percentX = (clickX / width) * 100;
+        const percentY = (clickY / height) * 100;
+        console.log("X", percentX, "Y", percentY)
 
         const req = await fetch(`https://where-is-waldo-api.onrender.com/misterio?x=${percentX}&y=${percentY}`);
         const res = await req.json();

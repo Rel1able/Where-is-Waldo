@@ -6,6 +6,7 @@ export default function Dropdown({ top, left ,}) {
     const [height, setHeight] = useState(0);
     useEffect(() => {
         const { offsetWidth, offsetHeight } = ref.current;
+        console.log("WIDTH", offsetWidth, "HEIGHT", offsetHeight)
         setWidth(offsetWidth);
         setHeight(offsetHeight);
         console.log(offsetWidth, offsetHeight)
@@ -15,7 +16,7 @@ export default function Dropdown({ top, left ,}) {
     const ref = useRef();
 
     return (
-        <div style={{top: `${top - height / 2}px`, left: `${left - (width / 2)}px`}} className={styles.dropdown}>
+        <div style={{top: `${top - height / 2}px`, left: `${left - width / 2}px`}} className={styles.dropdown}>
             <div ref={ref} className={styles.targetingBox}>
                 <div className={styles.pointer}></div>
             </div>
