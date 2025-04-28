@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useState, useEffect } from "react";
-
+import styles from "../styles/startScreen.module.css";
 export default function StartScreen() {
 
     const [isRunning, setIsRunning] = useState("");
@@ -17,12 +17,16 @@ export default function StartScreen() {
 
 
     return (
-        <>
+        <div className={styles.container}>
             {isRunning ? 
-            <Link to="/game">Start Game</Link>
+                <div className={styles.pictureContainer}>
+                    <img className={styles.image} src="img.jpg"/>
+                    <Link className={styles.btn} to="/game">Start Game</Link>
+                </div>
+              
              : <h1>Loading...</h1>}
             
-        </>
+        </div>
         
     )
 }

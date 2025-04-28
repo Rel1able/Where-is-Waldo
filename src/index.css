@@ -6,10 +6,19 @@
     box-sizing: border-box;
 }
 
+a{
+    text-decoration: none;
+}
+
 body{
-    height: 100vh;
+    height: 100vh;    
     display: flex;
     flex-direction: column;
     margin: 0;
     padding: 0;
+    background-color: var(--main-color);
+}
+
+#root{
+    height: 100%;
 }

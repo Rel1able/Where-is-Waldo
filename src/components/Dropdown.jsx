@@ -1,9 +1,12 @@
 import styles from "../styles/dropdown.module.css";
 import { useRef, useEffect, useState } from "react";
 
-export default function Dropdown({ top, left ,}) {
+export default function Dropdown({ top, left, characters, x, y}) {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
+    const [responseAlert, setResponseAlert] = useState(false);
+    const [status, setStatus] = useState("");
+    const ref = useRef();
     useEffect(() => {
         const { offsetWidth, offsetHeight } = ref.current;
         console.log("WIDTH", offsetWidth, "HEIGHT", offsetHeight)
@@ -12,18 +15,37 @@ export default function Dropdown({ top, left ,}) {
         console.log(offsetWidth, offsetHeight)
     }, [])
 
+    
 
-    const ref = useRef();
+    function handleAlert() {
+        setResponseAlert(true);
+        setTimeout(() => {
+            setResponseAlert(false);
+        }, 5000)
+    }
+
+    async function handleClick(characterName) {
+        const req = await fetch(`https://where-is-waldo-api.onrender.com/${characterName}?x=${x}&y=${y}`);
+        const res = await req.json();
+        setStatus(`${characterName} is ${res}`);
+        console.log(`${characterName} is ${res}`);
+        handleAlert()
+
+    }
+
+
+   
 
     return (
         <div style={{top: `${top - height / 2}px`, left: `${left - width / 2}px`}} className={styles.dropdown}>
+            {responseAlert && <p className={styles.alert}>{status}</p>}
             <div ref={ref} className={styles.targetingBox}>
                 <div className={styles.pointer}></div>
             </div>
             <div className={styles.charactersList}>
-                <p>Char 1</p>
-                <p>Char 2</p>
-                <p>Char 3</p>
+                {characters.map((character) => (
+                    <p onClick={() => handleClick(character.name)}>{character.name}</p>
+                ))}
             </div>
         </div>
 

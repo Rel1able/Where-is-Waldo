@@ -1,0 +1,39 @@
+.pictureContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-items: center;
+    gap: 1rem;
+    border: 2px solid white;
+    padding: 2rem;
+    border-radius: 2rem;
+    height: 400px;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    background-color: var(--main-color);
+}
+
+.image{
+    height: 300px;
+    width: 200px;
+}
+
+.btn{
+    background-color: var(--main-color);
+    border: 1px solid white;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    border-radius: 1rem;
+    color: white;
+}
+
+.btn:hover{
+    cursor: pointer;
+}
