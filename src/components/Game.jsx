@@ -10,10 +10,17 @@ export default function Game() {
     const [x, setX] = useState("");
     const [y, setY] = useState("");
     const [res, setRes] = useState("");
+    const [responseAlert, setResponseAlert] = useState(false);
     const ref = useRef();
     const dropdownRef = useRef();
     const imageRef = useRef();
 
+    function handleAlert() {
+        setResponseAlert(true);
+        setTimeout(() => {
+            setResponseAlert(false);
+        }, 5000)
+    }
 
 
     async function handleClick(e) {
@@ -38,6 +45,7 @@ export default function Game() {
         const req = await fetch(`https://where-is-waldo-api.onrender.com/misterio?x=${percentX}&y=${percentY}`);
         const res = await req.json();
         setRes(res);
+        handleAlert();
         console.log(res);
 
         
@@ -62,13 +70,14 @@ export default function Game() {
     return (
         <>
             <Header />
+            {responseAlert && <p className={styles.alert}>{res}</p>}
             <div  className={styles.container}>
                 <div ref={ref}  className={styles.imageContainer} onClick={handleClick}>
                     <img ref={imageRef} className={styles.image}  src="img.jpg"/>
                 </div>
                 {clicked  && <Dropdown ref={dropdownRef} top={y} left={x} />}
             </div>
-            {res && <h1>{res}</h1>}
+            
         </>
 
     )
