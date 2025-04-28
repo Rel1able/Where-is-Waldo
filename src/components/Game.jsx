@@ -2,7 +2,7 @@ import Dropdown from "./Dropdown"
 import { useState, useRef, useEffect } from "react";
 import styles from "../styles/game.module.css"
 import Header from "./Header";
-import FindBar from "./FindBar";
+
 
 
 export default function Game() {
@@ -19,11 +19,12 @@ export default function Game() {
     async function handleClick(e) {
         setClicked(true);
         console.log(e);
-        setX(e.pageX);
-        setY(e.pageY);
-        console.log(e.pageX);
-        console.log(e.pageY);
+        
+        console.log(e.clientX);
+        console.log(e.clientX);
         const rect = imageRef.current.getBoundingClientRect();
+        setX(e.pageX - rect.left);
+        setY(e.pageY - rect.top);
 
         const clickX = e.pageX - (rect.left + window.scrollX);
         const clickY = e.pageY - (rect.top + window.scrollY);
@@ -61,8 +62,6 @@ export default function Game() {
     return (
         <>
             <Header />
-            <FindBar />
-            
             <div  className={styles.container}>
                 <div ref={ref}  className={styles.imageContainer} onClick={handleClick}>
                     <img ref={imageRef} className={styles.image}  src="img.jpg"/>

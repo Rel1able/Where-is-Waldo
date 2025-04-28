@@ -1,9 +1,10 @@
 .header{
     color: white;
-    background-color: black;
+    background-color: var(--main-color);
     text-align: center;
     padding: 2rem;
     font-size: 2rem;
     font-weight: bold;
     width: 100%;
+
 }

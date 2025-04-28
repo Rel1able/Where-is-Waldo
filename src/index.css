@@ -1,3 +1,7 @@
+:root{
+    --main-color: rgb(33, 32, 32);
+}
+
 *{
     box-sizing: border-box;
 }

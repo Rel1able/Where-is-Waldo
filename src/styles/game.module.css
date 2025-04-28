@@ -1,8 +1,8 @@
 .imageContainer{
     margin: auto;
-    margin-top: 10rem;
     border: 2px solid;
     width: 100%;
+
 }
 
 .image{
@@ -15,4 +15,6 @@
     justify-content: center;
     align-items: center;
     border: 5px solid;
+    position: relative;
+    overflow: hidden;
 }
