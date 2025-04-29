@@ -1,15 +1,20 @@
 import Dropdown from "./Dropdown"
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useContext } from "react";
 import styles from "../styles/game.module.css"
 import Header from "./Header";
+import { GameContext } from "./Context";
 
 
 
 export default function Game() {
-    const [clicked, setClicked] = useState(false);
+
+    const [xCoord, setXCoord] = useState(0);
+    const [yCoord, setYCoord] = useState(0);
     const [x, setX] = useState("");
     const [y, setY] = useState("");
     const [res, setRes] = useState("");
+    const BOX_SIZE = 75;
+    const {status, responseAlert, clicked, setClicked, setResponseAlert } = useContext(GameContext);
 
     const [percentX, setPercentX] = useState(0);
     const [percentY, setPercentY] = useState(0);
@@ -36,7 +41,8 @@ export default function Game() {
     async function handleClick(e) {
         setClicked(true);
         console.log(e);
-        
+        setXCoord(e.pageX);
+        setYCoord(e.pageY);
         console.log(e.clientX);
         console.log(e.clientX);
         const rect = imageRef.current.getBoundingClientRect();
@@ -55,11 +61,12 @@ export default function Game() {
         setPercentY(percentY);
         console.log("X", percentX, "Y", percentY)
         setRes(res);
+        setResponseAlert(false);
 
         console.log(res);
 
         
-
+        console.log("X IS ", x, "Y IS ", y, "PERCENT X IS ", percentX, "PERCENT Y IS ", percentY)
     }
 
     useEffect(() => {
@@ -80,6 +87,7 @@ export default function Game() {
     return (
         <>
             <Header />
+            {responseAlert && <p style={{left: xCoord - BOX_SIZE, top: yCoord - BOX_SIZE}} className={styles.alert}>{status}</p>}
             <div  className={styles.container}>
                 <div ref={ref}  className={styles.imageContainer} onClick={handleClick}>
                     <img ref={imageRef} className={styles.image}  src="img.jpg"/>

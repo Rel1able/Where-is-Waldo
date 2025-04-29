@@ -1,11 +1,11 @@
 import styles from "../styles/dropdown.module.css";
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState , useContext} from "react";
+import { GameContext } from "./Context";
 
 export default function Dropdown({ top, left, characters, x, y}) {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
-    const [responseAlert, setResponseAlert] = useState(false);
-    const [status, setStatus] = useState("");
+    const {setResponseAlert, setStatus, setClicked } = useContext(GameContext);
     const ref = useRef();
     useEffect(() => {
         const { offsetWidth, offsetHeight } = ref.current;
@@ -21,7 +21,7 @@ export default function Dropdown({ top, left, characters, x, y}) {
         setResponseAlert(true);
         setTimeout(() => {
             setResponseAlert(false);
-        }, 5000)
+        }, 2000)
     }
 
     async function handleClick(characterName) {
@@ -30,7 +30,7 @@ export default function Dropdown({ top, left, characters, x, y}) {
         setStatus(`${characterName} is ${res}`);
         console.log(`${characterName} is ${res}`);
         handleAlert()
-
+        setClicked(false);
     }
 
 
@@ -38,7 +38,6 @@ export default function Dropdown({ top, left, characters, x, y}) {
 
     return (
         <div style={{top: `${top - height / 2}px`, left: `${left - width / 2}px`}} className={styles.dropdown}>
-            {responseAlert && <p className={styles.alert}>{status}</p>}
             <div ref={ref} className={styles.targetingBox}>
                 <div className={styles.pointer}></div>
             </div>

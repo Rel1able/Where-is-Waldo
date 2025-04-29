@@ -41,16 +41,3 @@
 }
 
 
-.alert{
-    position: absolute;
-    left: 50%;
-    bottom: 1rem;
-    width: 15rem;
-    transform: translate(-50%, -50%);
-    border-radius: 2rem;
-    padding: 1rem;
-    background-color: black;
-    font-size: 1.3rem;
-    color: white;
-    z-index: 11;
-}

@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import Game from "./components/Game.jsx"
 import ErrorElement from './components/ErrorElement.jsx'
+import { Context } from './components/Context.jsx'
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,9 @@ const router = createBrowserRouter([
 ])
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <RouterProvider router={router} />
-  </StrictMode>,
+  <Context>
+     <RouterProvider router={router} />
+  </Context>
+   
+
 )
