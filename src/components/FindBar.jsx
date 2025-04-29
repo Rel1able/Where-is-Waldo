@@ -8,7 +8,10 @@ export default function FindBar({ characters }) {
             <ul className={styles.list}>
                 {characters.map((character) => {
                     const found = character.found; 
-                    return <li style={{background: found && "red", textDecoration: found && "line-through"}} key={character.id}>{character.name}</li>
+                    return <li className={styles.listItem} style={{ background: found && "red", textDecoration: found && "line-through" }} key={character.id}>
+                        <img className={styles.img} src={`${character.name}.png`}/>
+                        {character.name}
+                    </li>
                 }
 
                     

@@ -41,3 +41,14 @@
 }
 
 
+.listItem{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+}
+.listItem img{
+    height: 50px;
+    object-fit: contain;
+
+}

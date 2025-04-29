@@ -9,3 +9,12 @@
     gap: 2rem;
 }
 
+.listItem{
+    display: flex;
+    flex-direction: column;
+}
+
+.img{
+    height: 100px;
+    object-fit: contain;
+}

@@ -58,7 +58,12 @@ export default function Dropdown({ top, left, characters, x, y}) {
             <div className={styles.charactersList}>
                 {characters.map((character) => {
                     const found = character.found;
-                    return <p style={{background: found && "red", textDecoration: found && "line-through"}} onClick={found ? null : () => handleClick(character.name)}>{character.name}</p>
+                    return <p className={styles.listItem}  style={
+                        { background: found && "red", textDecoration: found && "line-through" }
+                    } onClick={found ? null : () => handleClick(character.name)}>
+                        <img src={`${character.name}.png`}/>
+                        {character.name}
+                    </p>
                 }
                     
                    
