@@ -1,14 +1,15 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useRef } from "react";
 
 const GameContext = createContext()
 
 function Context({ children }) {
 
-        const [clicked, setClicked] = useState(false);
-        const [responseAlert, setResponseAlert] = useState(false);
-        const [status, setStatus] = useState("");
+    const [clicked, setClicked] = useState(false);
+    const [responseAlert, setResponseAlert] = useState(false);
+    const [status, setStatus] = useState("");
+    const timeoutId = useRef(null);
     return (
-        <GameContext.Provider value={{responseAlert, setResponseAlert, status, setStatus, clicked, setClicked}}>
+        <GameContext.Provider value={{timeoutId, responseAlert, setResponseAlert, status, setStatus, clicked, setClicked}}>
             {children}
         </GameContext.Provider>
     )

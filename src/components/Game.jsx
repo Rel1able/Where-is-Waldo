@@ -14,7 +14,7 @@ export default function Game() {
     const [y, setY] = useState("");
     const [res, setRes] = useState("");
     const BOX_SIZE = 75;
-    const {status, responseAlert, clicked, setClicked, setResponseAlert } = useContext(GameContext);
+    const {status, responseAlert, clicked, setClicked, setResponseAlert, timeoutId } = useContext(GameContext);
 
     const [percentX, setPercentX] = useState(0);
     const [percentY, setPercentY] = useState(0);
@@ -39,6 +39,10 @@ export default function Game() {
 
 
     async function handleClick(e) {
+        if (timeoutId.current !== null) {
+            window.clearTimeout(timeoutId.current);
+        }
+       
         setClicked(true);
         console.log(e);
         setXCoord(e.pageX);

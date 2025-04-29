@@ -5,7 +5,7 @@ import { GameContext } from "./Context";
 export default function Dropdown({ top, left, characters, x, y}) {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
-    const {setResponseAlert, setStatus, setClicked } = useContext(GameContext);
+    let {timeoutId, setResponseAlert, setStatus, setClicked } = useContext(GameContext);
     const ref = useRef();
     useEffect(() => {
         const { offsetWidth, offsetHeight } = ref.current;
@@ -19,7 +19,7 @@ export default function Dropdown({ top, left, characters, x, y}) {
 
     function handleAlert() {
         setResponseAlert(true);
-        setTimeout(() => {
+        timeoutId.current = setTimeout(() => {
             setResponseAlert(false);
         }, 2000)
     }
