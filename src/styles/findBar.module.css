@@ -1,0 +1,11 @@
+.list{
+    list-style-type: none;
+    padding-left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    gap: 2rem;
+}
+

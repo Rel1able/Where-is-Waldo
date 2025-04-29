@@ -5,7 +5,7 @@ import { GameContext } from "./Context";
 export default function Dropdown({ top, left, characters, x, y}) {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
-    let {timeoutId, setResponseAlert, setStatus, setClicked } = useContext(GameContext);
+    let {timeoutId, setResponseAlert, setStatus, setClicked, setCharacters } = useContext(GameContext);
     const ref = useRef();
     useEffect(() => {
         const { offsetWidth, offsetHeight } = ref.current;
@@ -31,6 +31,20 @@ export default function Dropdown({ top, left, characters, x, y}) {
         console.log(`${characterName} is ${res}`);
         handleAlert()
         setClicked(false);
+        if (res === "You are right") {
+            let foundCharacter = characters.find((character) => character.name === characterName);
+            console.log(foundCharacter);
+            setCharacters(characters.map(character => {
+                if (character.id === foundCharacter.id) {
+                    return { ...character, found: true }
+                } else {
+                    return character
+                }
+            }))
+            
+        }
+        console.log(characters);
+        
     }
 
 
@@ -42,9 +56,13 @@ export default function Dropdown({ top, left, characters, x, y}) {
                 <div className={styles.pointer}></div>
             </div>
             <div className={styles.charactersList}>
-                {characters.map((character) => (
-                    <p onClick={() => handleClick(character.name)}>{character.name}</p>
-                ))}
+                {characters.map((character) => {
+                    const found = character.found;
+                    return <p style={{background: found && "red", textDecoration: found && "line-through"}} onClick={found ? null : () => handleClick(character.name)}>{character.name}</p>
+                }
+                    
+                   
+                )}
             </div>
         </div>
 

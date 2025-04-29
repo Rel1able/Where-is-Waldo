@@ -24,7 +24,7 @@ export default function StartScreen() {
                     <Link className={styles.btn} to="/game">Start Game</Link>
                 </div>
               
-             : <h1>Loading...</h1>}
+             : <h1 style={{color: "white"}}>Loading...</h1>}
             
         </div>
         

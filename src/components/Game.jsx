@@ -3,6 +3,7 @@ import { useState, useRef, useEffect, useContext } from "react";
 import styles from "../styles/game.module.css"
 import Header from "./Header";
 import { GameContext } from "./Context";
+import FindBar from "./FindBar";
 
 
 
@@ -14,12 +15,12 @@ export default function Game() {
     const [y, setY] = useState("");
     const [res, setRes] = useState("");
     const BOX_SIZE = 75;
-    const {status, responseAlert, clicked, setClicked, setResponseAlert, timeoutId } = useContext(GameContext);
+    const {characters, setCharacters, status, responseAlert, clicked, setClicked, setResponseAlert, timeoutId } = useContext(GameContext);
 
     const [percentX, setPercentX] = useState(0);
     const [percentY, setPercentY] = useState(0);
 
-    const [characters, setCharacters] = useState([]);
+   
 
     useEffect(() => {
         async function getCharacters() {
@@ -91,6 +92,7 @@ export default function Game() {
     return (
         <>
             <Header />
+            <FindBar characters={characters}/>
             {responseAlert && <p style={{left: xCoord - BOX_SIZE, top: yCoord - BOX_SIZE}} className={styles.alert}>{status}</p>}
             <div  className={styles.container}>
                 <div ref={ref}  className={styles.imageContainer} onClick={handleClick}>
