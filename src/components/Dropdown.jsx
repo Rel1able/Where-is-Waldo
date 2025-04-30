@@ -27,11 +27,16 @@ export default function Dropdown({ top, left, characters, x, y}) {
     async function handleClick(characterName) {
         const req = await fetch(`https://where-is-waldo-api.onrender.com/${characterName}?x=${x}&y=${y}`);
         const res = await req.json();
-        setStatus(`${characterName} is ${res}`);
+        if (res !== "Try again") {
+            setStatus(`${characterName} ${res}`);
+        } else {
+            setStatus(res);
+        }
+        
         console.log(`${characterName} is ${res}`);
         handleAlert()
         setClicked(false);
-        if (res === "You are right") {
+        if (res === "is found") {
             let foundCharacter = characters.find((character) => character.name === characterName);
             console.log(foundCharacter);
             setCharacters(characters.map(character => {

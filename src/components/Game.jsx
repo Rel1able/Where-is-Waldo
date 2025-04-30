@@ -93,7 +93,7 @@ export default function Game() {
         <>
             <Header />
             <FindBar characters={characters}/>
-            {responseAlert && <p style={{left: xCoord - BOX_SIZE, top: yCoord - BOX_SIZE}} className={styles.alert}>{status}</p>}
+            {responseAlert && <p style={{left: xCoord - BOX_SIZE, top: yCoord - BOX_SIZE, background: status === "Try again" ? "red" : "green"}} className={styles.alert}>{status}</p>}
             <div  className={styles.container}>
                 <div ref={ref}  className={styles.imageContainer} onClick={handleClick}>
                     <img ref={imageRef} className={styles.image}  src="img.jpg"/>
