@@ -9,8 +9,8 @@ import FindBar from "./FindBar";
 
 export default function Game() {
 
-    const [xCoord, setXCoord] = useState(0);
-    const [yCoord, setYCoord] = useState(0);
+    const [pixelX, setPixelX] = useState(0);
+    const [pixelY, setPixelY] = useState(0);
     const [x, setX] = useState("");
     const [y, setY] = useState("");
     const [res, setRes] = useState("");
@@ -19,6 +19,8 @@ export default function Game() {
 
     const [percentX, setPercentX] = useState(0);
     const [percentY, setPercentY] = useState(0);
+    const [dropdownY, setDropdownY] = useState("");
+    const [dropdownX, setDropdownX] = useState("");
 
    
 
@@ -46,13 +48,13 @@ export default function Game() {
        
         setClicked(true);
         console.log(e);
-        setXCoord(e.pageX);
-        setYCoord(e.pageY);
+        setPixelX(e.pageX);
+        setPixelY(e.pageY);
         console.log(e.clientX);
         console.log(e.clientX);
         const rect = imageRef.current.getBoundingClientRect();
         
-
+        console.log("RECT", rect)
         const clickX = e.pageX - (rect.left + window.scrollX);
         const clickY = e.pageY - (rect.top + window.scrollY);
         const width = rect.width;
@@ -64,14 +66,15 @@ export default function Game() {
         const percentY = (clickY / height) * 100;
         setPercentX(percentX);
         setPercentY(percentY);
-        console.log("X", percentX, "Y", percentY)
+        console.log("X", e.pageX, "Y", e.pageY)
         setRes(res);
         setResponseAlert(false);
 
-        console.log(res);
 
-        
+        console.log(res);
         console.log("X IS ", x, "Y IS ", y, "PERCENT X IS ", percentX, "PERCENT Y IS ", percentY)
+        setDropdownY(e.pageY - rect.top > rect.height/2 ? "column-reverse" : "column")
+       
     }
 
     useEffect(() => {
@@ -92,8 +95,15 @@ export default function Game() {
     return (
         <>
             <Header />
-            <FindBar characters={characters}/>
-            {responseAlert && <p style={{left: xCoord - BOX_SIZE, top: yCoord - BOX_SIZE, background: status === "Try again" ? "red" : "green"}} className={styles.alert}>{status}</p>}
+            {/* <FindBar characters={characters}/> */}
+            {responseAlert &&
+                <p style={
+                    {
+                        left: pixelX - BOX_SIZE,
+                        top: pixelY - BOX_SIZE,
+                        background: status === "Try again" ? "red"
+                            : "green"
+                    }} className={styles.alert}>{status}</p>}
             <div  className={styles.container}>
                 <div ref={ref}  className={styles.imageContainer} onClick={handleClick}>
                     <img ref={imageRef} className={styles.image}  src="img.jpg"/>
@@ -103,7 +113,7 @@ export default function Game() {
                         character.found ? (
                             <div className={styles.marker} style={{left: `${character.coordinates.x}%`, top: `${character.coordinates.y}%`}}></div>
                     ) : null )}
-                {clicked  && <Dropdown x={percentX} y={percentY} characters={characters} ref={dropdownRef} top={y} left={x} />}
+                {clicked  && <Dropdown dropdownY={dropdownY} dropdownX={dropdownX} x={percentX} y={percentY} characters={characters} ref={dropdownRef} top={y} left={x} />}
             </div>
         </>
 

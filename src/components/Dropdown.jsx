@@ -2,9 +2,10 @@ import styles from "../styles/dropdown.module.css";
 import { useRef, useEffect, useState , useContext} from "react";
 import { GameContext } from "./Context";
 
-export default function Dropdown({ top, left, characters, x, y}) {
+export default function Dropdown({dropdownY, top, left, characters, x, y}) {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
+    console.log("tops is ", top, "left is ", left)
     let {timeoutId, setResponseAlert, setStatus, setClicked, setCharacters } = useContext(GameContext);
     const ref = useRef();
     useEffect(() => {
@@ -56,14 +57,14 @@ export default function Dropdown({ top, left, characters, x, y}) {
    
 
     return (
-        <div style={{top: `${top - height / 2}px`, left: `${left - width / 2}px`}} className={styles.dropdown}>
+        <div style={{top: `${top - height / 2}px`, left: `${left - width / 2}px`, flexDirection: dropdownY}} className={styles.dropdown}>
             <div ref={ref} className={styles.targetingBox}>
                 <div className={styles.pointer}></div>
             </div>
             <div className={styles.charactersList}>
                 {characters.map((character) => {
                     const found = character.found;
-                    return <p className={styles.listItem}  style={
+                    return <p key={character.id} className={styles.listItem}  style={
                         { background: found && "red", textDecoration: found && "line-through" }
                     } onClick={found ? null : () => handleClick(character.name)}>
                         <img src={`${character.name}.png`}/>
