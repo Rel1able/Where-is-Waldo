@@ -97,7 +97,12 @@ export default function Game() {
             <div  className={styles.container}>
                 <div ref={ref}  className={styles.imageContainer} onClick={handleClick}>
                     <img ref={imageRef} className={styles.image}  src="img.jpg"/>
+                    
                 </div>
+                {characters.map((character) => 
+                        character.found ? (
+                            <div className={styles.marker} style={{left: `${character.coordinates.x}%`, top: `${character.coordinates.y}%`}}></div>
+                    ) : null )}
                 {clicked  && <Dropdown x={percentX} y={percentY} characters={characters} ref={dropdownRef} top={y} left={x} />}
             </div>
         </>
