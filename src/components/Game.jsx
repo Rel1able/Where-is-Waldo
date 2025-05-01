@@ -22,6 +22,16 @@ export default function Game() {
     const [xShift, setXShift] = useState("");
     const [yShift, setYShift] = useState("");
 
+    const [loaded, setLoaded] = useState(false);
+    const [gameOver, setGameOver] = useState(false);
+
+    const charactersLeft = characters.filter((character) => character.found === false);
+
+
+    useEffect(() => {
+        setLoaded(true);
+    }, [])
+
    
 
     useEffect(() => {
@@ -70,11 +80,9 @@ export default function Game() {
         setRes(res);
         setResponseAlert(false);
 
-
-        console.log(res);
-        console.log("X IS ", x, "Y IS ", y, "PERCENT X IS ", percentX, "PERCENT Y IS ", percentY)
         setYShift(percentY > 50 ? "column-reverse" : "column")
         setXShift(percentX > 50 ? "125px" : 0);
+        console.log(charactersLeft);
     }
 
     useEffect(() => {
@@ -94,7 +102,8 @@ export default function Game() {
 
     return (
         <div className={styles.pageWrapper}>
-            <Header />
+            {gameOver && <h1>Congratulations game over</h1>}
+            <Header started={loaded} />
             <FindBar characters={characters}/>
             {responseAlert &&
                 <p style={
