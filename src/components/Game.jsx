@@ -19,8 +19,8 @@ export default function Game() {
 
     const [percentX, setPercentX] = useState(0);
     const [percentY, setPercentY] = useState(0);
-    const [dropdownY, setDropdownY] = useState("");
-    const [dropdownX, setDropdownX] = useState("");
+    const [xShift, setXShift] = useState("");
+    const [yShift, setYShift] = useState("");
 
    
 
@@ -73,8 +73,8 @@ export default function Game() {
 
         console.log(res);
         console.log("X IS ", x, "Y IS ", y, "PERCENT X IS ", percentX, "PERCENT Y IS ", percentY)
-        setDropdownY(e.pageY - rect.top > rect.height/2 ? "column-reverse" : "column")
-       
+        setYShift(percentY > 50 ? "column-reverse" : "column")
+        setXShift(percentX > 50 ? "125px" : 0);
     }
 
     useEffect(() => {
@@ -93,9 +93,9 @@ export default function Game() {
     }, [])
 
     return (
-        <>
+        <div className={styles.pageWrapper}>
             <Header />
-            {/* <FindBar characters={characters}/> */}
+            <FindBar characters={characters}/>
             {responseAlert &&
                 <p style={
                     {
@@ -113,9 +113,9 @@ export default function Game() {
                         character.found ? (
                             <div className={styles.marker} style={{left: `${character.coordinates.x}%`, top: `${character.coordinates.y}%`}}></div>
                     ) : null )}
-                {clicked  && <Dropdown dropdownY={dropdownY} dropdownX={dropdownX} x={percentX} y={percentY} characters={characters} ref={dropdownRef} top={y} left={x} />}
+                {clicked  && <Dropdown yShift={yShift} xShift={xShift} x={percentX} y={percentY} characters={characters} ref={dropdownRef} top={y} left={x} />}
             </div>
-        </>
+        </div>
 
     )
 }

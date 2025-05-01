@@ -21,13 +21,8 @@
 
 .charactersList{
     display: flex;
-    gap: 1rem;
-    font-weight: bold;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: white;
-    background-color: black;
+    
 }
 
 .pointer{
@@ -41,10 +36,21 @@
 
 
 .listItem{
+    width: 200px;
+    background-color: var(--main-color);
+    padding: 1rem;
     display: flex;
-    flex-direction: column;
-    text-align: center;
+    margin: 0;
+    align-items: center;
+    gap: 1rem;
+    color: white;
+    position: relative;
 
+
+}
+
+.listItem:hover{
+    cursor: pointer;
 }
 .listItem img{
     height: 50px;
