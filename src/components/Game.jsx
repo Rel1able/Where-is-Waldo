@@ -15,21 +15,31 @@ export default function Game() {
     const [y, setY] = useState("");
     const [res, setRes] = useState("");
     const BOX_SIZE = 75;
-    const {characters, setCharacters, status, responseAlert, clicked, setClicked, setResponseAlert, timeoutId } = useContext(GameContext);
+    const { characters, setGameOver, gameOver, setCharacters, status, responseAlert, clicked, setClicked, setResponseAlert, timeoutId } = useContext(GameContext);
 
     const [percentX, setPercentX] = useState(0);
     const [percentY, setPercentY] = useState(0);
     const [xShift, setXShift] = useState("");
     const [yShift, setYShift] = useState("");
 
-    const [loaded, setLoaded] = useState(false);
-    const [gameOver, setGameOver] = useState(false);
+    const [isRunning, setIsRunning] = useState(false);
+
 
     const charactersLeft = characters.filter((character) => character.found === false);
 
 
+    function playAgain() {
+        setGameOver(false);
+    }
+
     useEffect(() => {
-        setLoaded(true);
+        if (charactersLeft.length === 0) {
+            setGameOver(true);
+        }
+    }, [charactersLeft])
+
+    useEffect(() => {
+        setIsRunning(true);
     }, [])
 
    
@@ -102,8 +112,8 @@ export default function Game() {
 
     return (
         <div className={styles.pageWrapper}>
-            {gameOver && <h1>Congratulations game over</h1>}
-            <Header started={loaded} />
+            {gameOver && <button onClick={playAgain}>Play again</button>}
+            <Header isRunning={isRunning} setIsRunning={setIsRunning} />
             <FindBar characters={characters}/>
             {responseAlert &&
                 <p style={

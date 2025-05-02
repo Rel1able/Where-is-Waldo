@@ -1,17 +1,20 @@
-import { useState, useEffect, useRef} from "react";
+import { useState, useEffect, useRef, useContext} from "react";
+import { GameContext } from "./Context";
 
-
-export default function Timer({ started }) {
+export default function Timer({isRunning}) {
+    const {gameOver} = useContext(GameContext)
     const [time, setTime] = useState(0);
     const intervalRef = useRef(null);
 
     useEffect(() => {
-
-        if (started) {
+        if (isRunning && !gameOver) {
             intervalRef.current = setInterval(() => setTime(prev => prev + 1), 10);
         }
+        if (gameOver) {
+            clearInterval(intervalRef.current)
+        }
         return () => clearInterval(intervalRef.current)
-    }, [started])
+    }, [isRunning, gameOver])
 
     const minutes = Math.floor((time % 360000) / 6000)
     const seconds = Math.floor((time % 6000) / 100);

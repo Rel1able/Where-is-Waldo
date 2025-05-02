@@ -1,10 +1,10 @@
 import styles from "../styles/header.module.css";
 import Timer from "./Timer";
-export default function Header({started}) {
+export default function Header({isRunning, setIsRunning}) {
     return (
         <header className={styles.header}>
             Where's Waldo
-            {started && <Timer started={started} />}
+            {isRunning && <Timer isRunning={isRunning} setIsRunning={setIsRunning} />}
             
         </header>
     )
