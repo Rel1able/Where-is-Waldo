@@ -4,6 +4,7 @@ import styles from "../styles/game.module.css"
 import Header from "./Header";
 import { GameContext } from "./Context";
 import FindBar from "./FindBar";
+import GameOver from "./GameOver";
 
 
 
@@ -39,6 +40,7 @@ export default function Game() {
     }, [charactersLeft])
 
     useEffect(() => {
+        setGameOver(false)
         setIsRunning(true);
     }, [])
 
@@ -112,7 +114,7 @@ export default function Game() {
 
     return (
         <div className={styles.pageWrapper}>
-            {gameOver && <button onClick={playAgain}>Play again</button>}
+            {gameOver && <GameOver/>}
             <Header isRunning={isRunning} setIsRunning={setIsRunning} />
             <FindBar characters={characters}/>
             {responseAlert &&

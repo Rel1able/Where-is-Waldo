@@ -1,0 +1,15 @@
+.form{
+    margin: auto;
+    display: flex; 
+    border: 2px solid black;
+    padding: 1.5rem;
+    border-radius: 2rem;
+    background-color: black;
+    color: white;
+    gap: 1rem;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 9999;
+}
