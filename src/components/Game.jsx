@@ -31,14 +31,15 @@ export default function Game() {
     useEffect(() => {
         setGameOver(false)
         setIsRunning(true);
+        console.log("Characters left are", charactersLeft);
     }, [])
 
 
     useEffect(() => {
-        if (charactersLeft.length === 0) {
+        if (characters.length > 0 && charactersLeft.length === 0) {
             setGameOver(true);
         }
-    }, [charactersLeft])
+    }, [charactersLeft, characters])
 
 
    
