@@ -28,10 +28,11 @@ export default function Game() {
 
     const charactersLeft = characters.filter((character) => character.found === false);
 
+    useEffect(() => {
+        setGameOver(false)
+        setIsRunning(true);
+    }, [])
 
-    function playAgain() {
-        setGameOver(false);
-    }
 
     useEffect(() => {
         if (charactersLeft.length === 0) {
@@ -39,10 +40,6 @@ export default function Game() {
         }
     }, [charactersLeft])
 
-    useEffect(() => {
-        setGameOver(false)
-        setIsRunning(true);
-    }, [])
 
    
 

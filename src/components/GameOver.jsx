@@ -6,10 +6,13 @@ export default function GameOver() {
         e.preventDefault();
     }
     return (
-        <form className={styles.form} onSubmit={handleSubmit}>
-            <label htmlFor="name">Please enter your name:</label>
-            <input type="text" id="name" name="name" />
-            <button>Enter</button>
-        </form>
+        <>
+            <form className={styles.form} onSubmit={handleSubmit}>
+                <label htmlFor="name">Please enter your name:</label>
+                <input type="text" id="name" name="name" />
+                <button>Submit</button>
+            </form>
+        </>
+
     )
 }
