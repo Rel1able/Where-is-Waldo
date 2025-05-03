@@ -111,8 +111,10 @@ export default function Game() {
     }, [])
 
     return (
-        <div className={styles.pageWrapper}>
+        <>
             {gameOver && <GameOver/>}
+             <div className={`${styles.pageWrapper} ${gameOver ? styles.blurred : ""}`}>
+            
             <Header isRunning={isRunning} setIsRunning={setIsRunning} />
             <FindBar characters={characters}/>
             {responseAlert &&
@@ -124,7 +126,7 @@ export default function Game() {
                             : "green"
                     }} className={styles.alert}>{status}</p>}
             <div  className={styles.container}>
-                <div ref={ref}  className={styles.imageContainer} onClick={handleClick}>
+                <div ref={ref}  className={styles.imageContainer} onClick={gameOver ? "" : handleClick}>
                     <img ref={imageRef} className={styles.image}  src="img.jpg"/>
                     
                 </div>
@@ -135,6 +137,8 @@ export default function Game() {
                 {clicked  && <Dropdown yShift={yShift} xShift={xShift} x={percentX} y={percentY} characters={characters} ref={dropdownRef} top={y} left={x} />}
             </div>
         </div>
+        </>
+       
 
     )
 }
