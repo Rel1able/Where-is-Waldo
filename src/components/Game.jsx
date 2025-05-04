@@ -142,7 +142,7 @@ export default function Game() {
                             : "green"
                     }} className={styles.alert}>{status}</p>}
             <div  className={styles.container}>
-                <div ref={ref}  className={styles.imageContainer} onClick={gameOver ? "" : handleClick}>
+                <div ref={ref}  className={styles.imageContainer} onClick={gameOver ? null : handleClick}>
                     <img ref={imageRef} className={styles.image}  src="img.jpg"/>
                     
                 </div>
