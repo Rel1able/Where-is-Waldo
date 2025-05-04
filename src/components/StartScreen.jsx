@@ -6,9 +6,16 @@ export default function StartScreen() {
     const [isRunning, setIsRunning] = useState("");
 
     async function checkServer() {
-        const req = await fetch("https://where-is-waldo-api.onrender.com");
-        const res = await req.json();
-        setIsRunning(res);
+        try {
+            const req = await fetch("https://where-is-waldo-api.onrender.com/ping");
+            if (!req.ok) throw new Error("Server not OK");
+            const res = await req.json();
+            setIsRunning(res);
+            
+        } catch (err) {
+            console.log(err.message);
+        }
+        
     }
 
     useEffect(() => {

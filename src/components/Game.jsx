@@ -29,6 +29,22 @@ export default function Game() {
     const charactersLeft = characters.filter((character) => character.found === false);
 
     useEffect(() => {
+        async function startGame() {
+            try {
+                const req = await fetch("https://where-is-waldo-api.onrender.com/game/start", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json", 
+                    },
+                })
+                const res = await req.json();
+                console.log(res);
+            
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        startGame();
         setGameOver(false)
         setIsRunning(true);
         console.log("Characters left are", charactersLeft);
