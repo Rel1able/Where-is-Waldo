@@ -10,8 +10,9 @@ function Context({ children }) {
      const [characters, setCharacters] = useState([]);
     const timeoutId = useRef(null);
     const [gameOver, setGameOver] = useState(false);
+    const [time, setTime] = useState(0);
     return (
-        <GameContext.Provider value={{characters, setCharacters,timeoutId, responseAlert, setResponseAlert, status, setStatus, clicked, setClicked, gameOver, setGameOver}}>
+        <GameContext.Provider value={{time, setTime,characters, setCharacters,timeoutId, responseAlert, setResponseAlert, status, setStatus, clicked, setClicked, gameOver, setGameOver}}>
             {children}
         </GameContext.Provider>
     )

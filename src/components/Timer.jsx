@@ -1,9 +1,8 @@
-import { useState, useEffect, useRef, useContext} from "react";
+import { useEffect, useRef, useContext} from "react";
 import { GameContext } from "./Context";
 
 export default function Timer({isRunning}) {
-    const {gameOver} = useContext(GameContext)
-    const [time, setTime] = useState(0);
+    const {gameOver, time, setTime} = useContext(GameContext)
     const intervalRef = useRef(null);
 
     useEffect(() => {

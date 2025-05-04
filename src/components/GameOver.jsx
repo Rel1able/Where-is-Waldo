@@ -1,13 +1,16 @@
 import styles from "../styles/gameOver.module.css"
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { GameContext } from "./Context";
 
 export default function GameOver() {
     const [username, setUsername] = useState("");
     const [errors, setErrors] = useState([]);
 
+    const { time } = useContext(GameContext);
+
 
     async function handleSubmit(e) {
-        const time = 1241241241;
+        
         e.preventDefault();
         try {
             const req = await fetch("https://where-is-waldo-api.onrender.com/game/end", {
