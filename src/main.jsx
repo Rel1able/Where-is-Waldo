@@ -6,7 +6,7 @@ import App from './App.jsx'
 import Game from "./components/Game.jsx"
 import ErrorElement from './components/ErrorElement.jsx'
 import { Context } from './components/Context.jsx'
-import GameOver from './components/GameOver.jsx'
+import LeaderBoard from './components/Leaderboard.jsx'
 
 const router = createBrowserRouter([
   {
@@ -17,6 +17,10 @@ const router = createBrowserRouter([
   {
     path: "/game",
     element: <Game/>
+  },
+  {
+    path: "/leaderboard",
+    element: <LeaderBoard/>
   }
 ])
 
