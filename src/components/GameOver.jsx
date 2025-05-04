@@ -1,12 +1,14 @@
 import styles from "../styles/gameOver.module.css"
 import { useState, useContext } from "react";
 import { GameContext } from "./Context";
+import { useNavigate } from "react-router-dom";
 
 export default function GameOver() {
     const [username, setUsername] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const { time } = useContext(GameContext);
+    const { time, setGameOver } = useContext(GameContext);
+    const navigate = useNavigate();
 
 
     async function handleSubmit(e) {
@@ -25,6 +27,9 @@ export default function GameOver() {
                 setErrors(res.errors);
             }
             console.log(res);
+            setGameOver(false);
+            navigate("/leaderboard");
+
         } catch (err) {
             console.log(err);
         }
