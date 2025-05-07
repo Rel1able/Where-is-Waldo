@@ -26,6 +26,7 @@ export default function Game() {
     const [isRunning, setIsRunning] = useState(false);
 
     const [session, setSession] = useState("");
+    const sessionId = parseInt(session.id);
 
 
     const charactersLeft = characters.filter((character) => character.found === false);
@@ -133,6 +134,23 @@ export default function Game() {
         }
     }, [])
 
+    useEffect(() => {
+        async function saveTime() {
+            await fetch("https://where-is-waldo-api.onrender.com/game/saveTime", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({sessionId})
+                
+            })
+        }
+        if (gameOver) {
+            saveTime();
+        }
+        
+    }, [gameOver])
+
     return (
         <>
             {gameOver && <GameOver sessionId={session.id} />}
@@ -153,9 +171,9 @@ export default function Game() {
                     <img ref={imageRef} className={styles.image}  src="img.jpg"/>
                     
                 </div>
-                {characters.map((character) => 
+                {characters.map((character, id) => 
                         character.found ? (
-                            <div className={styles.marker} style={{left: `${character.coordinates.x}%`, top: `${character.coordinates.y}%`}}></div>
+                            <div key={id} className={styles.marker} style={{left: `${character.coordinates.x}%`, top: `${character.coordinates.y}%`}}></div>
                     ) : null )}
                 {clicked  && <Dropdown yShift={yShift} xShift={xShift} x={percentX} y={percentY} characters={characters} ref={dropdownRef} top={y} left={x} />}
             </div>

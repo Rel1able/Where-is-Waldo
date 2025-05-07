@@ -5,7 +5,7 @@ import { GameContext } from "./Context";
 export default function Dropdown({xShift, yShift, top, left, characters, x, y}) {
     const [width, setWidth] = useState(0);
     const [height, setHeight] = useState(0);
-    console.log("tops is ", top, "left is ", left)
+
     let {timeoutId, setResponseAlert, setStatus, setClicked, setCharacters } = useContext(GameContext);
     const ref = useRef();
     useEffect(() => {
@@ -14,6 +14,7 @@ export default function Dropdown({xShift, yShift, top, left, characters, x, y}) 
         setWidth(offsetWidth);
         setHeight(offsetHeight);
         console.log(offsetWidth, offsetHeight)
+            console.log("tops is ", top, "left is ", left)
     }, [])
 
     
