@@ -22,7 +22,7 @@ export default function LeaderBoard() {
             {players.length === 0 ? <h1>Loading...</h1> : 
                 <ul style={{color: "white"}}>
                     {players.map((player) => (
-                        <li>{player.name} {player.bestTime}</li>
+                        <li>{player.username} {player.duration}</li>
                     ))}
                 </ul>}
         </>

@@ -3,11 +3,11 @@ import { useState, useContext } from "react";
 import { GameContext } from "./Context";
 import { useNavigate } from "react-router-dom";
 
-export default function GameOver() {
+export default function GameOver({sessionId}) {
     const [username, setUsername] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const { time, setGameOver } = useContext(GameContext);
+    const {setGameOver } = useContext(GameContext);
     const navigate = useNavigate();
 
 
@@ -20,7 +20,7 @@ export default function GameOver() {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({username, time})
+                body: JSON.stringify({ sessionId, username})
             });
             const res = await req.json();
             if (!req.ok) {

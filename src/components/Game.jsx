@@ -25,6 +25,8 @@ export default function Game() {
 
     const [isRunning, setIsRunning] = useState(false);
 
+    const [session, setSession] = useState("");
+
 
     const charactersLeft = characters.filter((character) => character.found === false);
 
@@ -35,17 +37,18 @@ export default function Game() {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json", 
-                    },
+                    }
                 })
                 const res = await req.json();
                 console.log(res);
+                setSession(res.session);
             
             } catch (err) {
                 console.log(err);
             }
         }
         startGame();
-        setGameOver(false)
+        setGameOver(false);
         setIsRunning(true);
         console.log("Characters left are", charactersLeft);
     }, [])
@@ -128,7 +131,7 @@ export default function Game() {
 
     return (
         <>
-            {gameOver && <GameOver/>}
+            {gameOver && <GameOver sessionId={session.id} />}
              <div className={`${styles.pageWrapper} ${gameOver ? styles.blurred : ""}`}>
             
             <Header isRunning={isRunning} setIsRunning={setIsRunning} />
