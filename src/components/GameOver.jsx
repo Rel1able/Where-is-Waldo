@@ -1,13 +1,11 @@
 import styles from "../styles/gameOver.module.css"
-import { useState, useContext } from "react";
-import { GameContext } from "./Context";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function GameOver({sessionId}) {
     const [username, setUsername] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const {setGameOver } = useContext(GameContext);
     const navigate = useNavigate();
 
 
@@ -27,7 +25,6 @@ export default function GameOver({sessionId}) {
                 setErrors(res.errors);
             }
             console.log(res);
-            setGameOver(false);
             navigate("/leaderboard");
 
         } catch (err) {
@@ -37,7 +34,7 @@ export default function GameOver({sessionId}) {
     return (
         <>
             <form className={styles.form} onSubmit={handleSubmit}>
-                <label htmlFor="name">Please enter your name:</label>
+                <label htmlFor="name">Please enter your name if you want to be displayed on the leaderboard</label>
                 <input onChange={e => setUsername(e.target.value)} required min="3" type="text" id="name" name="name" />
                 <button>Submit</button>
                 {errors && (

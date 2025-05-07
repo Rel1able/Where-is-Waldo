@@ -1,9 +1,16 @@
 import { Link } from "react-router-dom"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import styles from "../styles/startScreen.module.css";
+import { GameContext } from "./Context";
 export default function StartScreen() {
 
     const [isRunning, setIsRunning] = useState("");
+    const { resetGame} = useContext(GameContext);
+
+    useEffect(() => {
+        checkServer()
+        resetGame()
+    }, [])
 
     async function checkServer() {
         try {
@@ -18,9 +25,6 @@ export default function StartScreen() {
         
     }
 
-    useEffect(() => {
-        checkServer();
-    }, [])
 
 
     return (
@@ -28,7 +32,7 @@ export default function StartScreen() {
             {isRunning ? 
                 <div className={styles.pictureContainer}>
                     <img className={styles.image} src="img.jpg"/>
-                    <Link className={styles.btn} to="/game">Start Game</Link>
+                    <Link  className={styles.btn} to="/game">Start Game</Link>
                 </div>
               
              : <h1 style={{color: "white"}}>Loading...</h1>}

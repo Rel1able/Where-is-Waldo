@@ -54,6 +54,10 @@ export default function Game() {
     }, [])
 
 
+    function handleReset() {
+        setGameOver(false);
+    }
+
     useEffect(() => {
         if (characters.length > 0 && charactersLeft.length === 0) {
             setGameOver(true);
@@ -134,7 +138,7 @@ export default function Game() {
             {gameOver && <GameOver sessionId={session.id} />}
              <div className={`${styles.pageWrapper} ${gameOver ? styles.blurred : ""}`}>
             
-            <Header isRunning={isRunning} setIsRunning={setIsRunning} />
+            <Header reset={handleReset} isRunning={isRunning} setIsRunning={setIsRunning} />
             <FindBar characters={characters}/>
             {responseAlert &&
                 <p style={
