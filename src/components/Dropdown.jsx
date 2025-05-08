@@ -10,11 +10,8 @@ export default function Dropdown({xShift, yShift, top, left, characters, x, y}) 
     const ref = useRef();
     useEffect(() => {
         const { offsetWidth, offsetHeight } = ref.current;
-        console.log("WIDTH", offsetWidth, "HEIGHT", offsetHeight)
         setWidth(offsetWidth);
         setHeight(offsetHeight);
-        console.log(offsetWidth, offsetHeight)
-            console.log("tops is ", top, "left is ", left)
     }, [])
 
     
@@ -34,13 +31,10 @@ export default function Dropdown({xShift, yShift, top, left, characters, x, y}) 
         } else {
             setStatus(res);
         }
-        
-        console.log(`${characterName} is ${res}`);
         handleAlert()
         setClicked(false);
         if (res === "is found") {
             let foundCharacter = characters.find((character) => character.name === characterName);
-            console.log(foundCharacter);
             setCharacters(characters.map(character => {
                 if (character.id === foundCharacter.id) {
                     return { ...character, found: true }
@@ -50,7 +44,6 @@ export default function Dropdown({xShift, yShift, top, left, characters, x, y}) 
             }))
             
         }
-        console.log(characters);
         
     }
 

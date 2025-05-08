@@ -11,7 +11,6 @@ export default function LeaderBoard() {
             const req = await fetch("https://where-is-waldo-api.onrender.com/game/leaderboard");
             const res = await req.json();
             setPlayers(res.players);
-            console.log("Leaderboard,", res);
         }
         getLeaderboard();
     }, [])

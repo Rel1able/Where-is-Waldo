@@ -41,7 +41,6 @@ export default function Game() {
                     }
                 })
                 const res = await req.json();
-                console.log(res);
                 setSession(res.session);
             
             } catch (err) {
@@ -51,7 +50,6 @@ export default function Game() {
         startGame();
         setGameOver(false);
         setIsRunning(true);
-        console.log("Characters left are", charactersLeft);
     }, [])
 
 
@@ -68,7 +66,6 @@ export default function Game() {
         async function getCharacters() {
             const req = await fetch("https://where-is-waldo-api.onrender.com");
             const res = await req.json();
-            console.log("CHaracters", res);
             setCharacters(res);
         }
         getCharacters()
@@ -87,14 +84,10 @@ export default function Game() {
         }
        
         setClicked(true);
-        console.log(e);
         setPixelX(e.pageX);
         setPixelY(e.pageY);
-        console.log(e.clientX);
-        console.log(e.clientX);
         const rect = imageRef.current.getBoundingClientRect();
-        
-        console.log("RECT", rect)
+
         const clickX = e.pageX - (rect.left + window.scrollX);
         const clickY = e.pageY - (rect.top + window.scrollY);
         const width = rect.width;
@@ -106,13 +99,13 @@ export default function Game() {
         const percentY = (clickY / height) * 100;
         setPercentX(percentX);
         setPercentY(percentY);
-        console.log("X", e.pageX, "Y", e.pageY)
+
         setRes(res);
         setResponseAlert(false);
 
         setYShift(percentY > 50 ? "column-reverse" : "column")
         setXShift(percentX > 50 ? "125px" : 0);
-        console.log(charactersLeft);
+
     }
 
     useEffect(() => {

@@ -25,7 +25,6 @@ export default function GameOver({sessionId}) {
                 setErrors(res.errors);
                 return;
             }
-            console.log(res);
             resetGame()
             setTimeout(() => navigate("/leaderboard"), 0)
             
