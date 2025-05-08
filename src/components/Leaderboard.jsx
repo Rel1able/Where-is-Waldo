@@ -1,5 +1,5 @@
 import Header from "./Header"
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import styles from "../styles/leaderboard.module.css";
 
 export default function LeaderBoard() {

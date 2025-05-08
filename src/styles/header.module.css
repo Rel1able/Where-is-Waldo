@@ -10,8 +10,20 @@
     z-index: 1;
     display: flex;
     justify-content: space-around;
+    align-items: center;
 }
 
 .header a{
     color: var(--secondary-color);
+}
+
+.title{
+    color: var(--secondary-color);
+    font-size: 2rem;
+}
+
+@media (max-width: 600px){
+    .header{
+        flex-direction: column;
+    }
 }

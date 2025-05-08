@@ -1,13 +1,13 @@
 import styles from "../styles/gameOver.module.css"
-import { useState } from "react";
+import { useState, useContext} from "react";
 import { useNavigate } from "react-router-dom";
-
+import { GameContext } from "./Context";
 export default function GameOver({sessionId}) {
     const [username, setUsername] = useState("");
     const [errors, setErrors] = useState([]);
 
     const navigate = useNavigate();
-
+    const { resetGame } = useContext(GameContext);
 
     async function handleSubmit(e) {
         
@@ -23,9 +23,13 @@ export default function GameOver({sessionId}) {
             const res = await req.json();
             if (!req.ok) {
                 setErrors(res.errors);
+                return;
             }
             console.log(res);
-            navigate("/leaderboard");
+            resetGame()
+            setTimeout(() => navigate("/leaderboard"), 0)
+            
+            
 
         } catch (err) {
             console.log(err);
@@ -34,11 +38,11 @@ export default function GameOver({sessionId}) {
     return (
         <>
             <form className={styles.form} onSubmit={handleSubmit}>
-                <label htmlFor="name">Please enter your name if you want to be displayed on the leaderboard</label>
-                <input onChange={e => setUsername(e.target.value)} required min="3" type="text" id="name" name="name" />
-                <button>Submit</button>
+                <label htmlFor="name" className={styles.label}>Please enter your name if you want it to be displayed on the leaderboard</label>
+                <input className={styles.input} onChange={e => setUsername(e.target.value)} required min="3" type="text" id="name" name="name" />
+                <button className={styles.btn}>Submit</button>
                 {errors && (
-                    <ul>
+                    <ul className={styles.errorList}>
                         {errors.map((err, id) => (
                             <li key={id}>{err.msg}</li>
                         ))}

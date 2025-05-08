@@ -51,6 +51,7 @@
 
 .listItem:hover{
     cursor: pointer;
+    background-color: black;
 }
 .listItem img{
     height: 50px;

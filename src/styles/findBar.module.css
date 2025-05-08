@@ -12,6 +12,9 @@
 .listItem{
     display: flex;
     flex-direction: column;
+    font-weight: bold;
+
+
 }
 
 .img{
