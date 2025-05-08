@@ -1,0 +1,16 @@
+.text{
+    color: white;
+    margin: auto;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+.text a{
+    color: var(--secondary-color);
+}

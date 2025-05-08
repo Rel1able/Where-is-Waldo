@@ -31,6 +31,7 @@ export default function StartScreen() {
         <div className={styles.container}>
             {isRunning ? 
                 <div className={styles.pictureContainer}>
+                    <h1>Mysterious world</h1>
                     <img className={styles.image} src="img.jpg"/>
                     <Link  className={styles.btn} to="/game">Start Game</Link>
                 </div>

@@ -1,5 +1,6 @@
 import Header from "./Header"
 import { useState, useEffect } from "react";
+import styles from "../styles/leaderboard.module.css";
 
 export default function LeaderBoard() {
 
@@ -20,11 +21,20 @@ export default function LeaderBoard() {
         <>
             <Header />
             {players.length === 0 ? <h1>Loading...</h1> : 
-                <ul style={{color: "white"}}>
+                <div className={styles.container}>
+                    <h1>Best results</h1>
+                    <div className={styles.tableTitle}>
+                        <h3>Username</h3>
+                        <h3>Time in seconds</h3>
+                    </div>
+                    
+                <ul className={styles.list} style={{color: "white"}}>
                     {players.map((player, id) => (
-                        <li key={id}>{player.username} {player.duration}</li>
+                        <li className={styles.listItem} key={id}><p>{player.username}</p><p>{player.duration}</p></li>
                     ))}
-                </ul>}
+                </ul>
+                </div>
+                }
         </>
     )
 }
