@@ -19,7 +19,7 @@ export default function LeaderBoard() {
     return (
         <>
             <Header />
-            {players.length === 0 ? <h1>Loading...</h1> : 
+            {players.length === 0 ? <h1 className={styles.loading}>Loading...</h1> : 
                 <div className={styles.container}>
                     <h1>Best results</h1>
                     <div className={styles.tableTitle}>
